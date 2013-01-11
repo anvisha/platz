@@ -1,24 +1,26 @@
-<body>
-  <%= form_for([current_user, @event]) do |form| %>
-    <div>
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-    </div>
-    <div>
-      <%= form.label :street %>
-      <%= form.text_field :street %>
-    </div>
-    <div>
-      <%= form.label :zip_code %>
-      <%= form.text_field :zip_code %>
-    </div>
-    <div>
-      <%= form.label :occurs_at, "Date" %>
-      <%= form.datetime_select :occurs_at, :start_year => Time.now.year, :ampm => true,
-          :order => [:month, :day, :year, :hour, :minute], :minute_step => 15  %>
-    </div>
-    <div>
-      <%= form.submit %>
-    </div>
-  <% end %>
-</body>
+<%= form_for([current_user, @event]) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :occurs_at, "Date" %>
+    <%= form.datetime_select :occurs_at, :start_year => Time.now.year, :ampm => true,
+        :order => [:month, :day, :year, :hour, :minute], :minute_step => 15  %>
+  </div>
+  <div>
+    <%= form.label :who %>
+    <%= form.text_field :who %>
+  </div>
+  <div>
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

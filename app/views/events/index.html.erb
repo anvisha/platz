@@ -17,8 +17,7 @@
       <%= event.name %>
     </td>
     <td>
-      <%= event.street %></br>
-      <%= event.zip_code %>
+      <%= event.location %>
     </td>
     <td>
       <%= event.occurs_at.try(:strftime, "%B %d, %l:%M %p") %>
@@ -30,7 +29,7 @@
   </tr>
 <% end %>
 </table>
-<h3>Events I'm attending</h3>
+<h3>Events</h3>
 <table>
   <tr>
     <th>
@@ -49,8 +48,7 @@
       <%= event.name %>
     </td>
     <td>
-      <%= event.street %></br>
-      <%= event.zip_code %>
+      <%= event.location %>
     </td>
     <td>
       <%= event.occurs_at.try(:strftime, "%B %d, %l:%M %p") %>

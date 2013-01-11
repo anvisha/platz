@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :require_login
 
   def index
-    @events = current_user.events
+    @events = Event.all
     @created_events = current_user.created_events
   end
 

@@ -2,8 +2,7 @@
 <html>
 <head>
   <title>Platz</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag  "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= params[:controller] %>">
@@ -11,7 +10,24 @@
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
     <% end %>
+    <header>
+      <% if current_user %>
+        <h1>Events</h1>
+        <nav>
+          <ul>
+            <li><%= link_to "Past Events", "#" %></li>
+            <li><%= link_to "Create Event", new_user_event_path(current_user) %></li>
+            <li>Upload Photos</li>
+
+            <li><%= current_user.email %> (<%= link_to "Logout", logout_path%>)</li>
+          </ul>
+        </nav>
+      <% else %>
+
+      <% end %>
+    </header>
     <%= yield %>
   </div>
+  <%= javascript_include_tag "application" %>
 </body>
 </html>
