@@ -1,12 +1,12 @@
 <div class="upcoming-events">
   <h1> Upcoming Events </h1>
   <%= debug @by_month %>
-  <table> 
-    <tr>
-      
-      Event Name
-    </tr>
-
+  <table>
+    <% @by_month.each_key do |yearmonth| %> 
+      <tr>
+        <%= yearmonth%>
+      </tr>
+    <%end%>
   </table>
 </div>
 <h3>Events I Created</h3>
