@@ -47,7 +47,7 @@
 <% @events.each do |event| %>
   <tr>
     <td>
-      <%= event.name %>
+      <%= link_to event.name, event %>
     </td>
     <td>
       <%= event.location %>

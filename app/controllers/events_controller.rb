@@ -49,13 +49,9 @@ class EventsController < ApplicationController
   
 
   def attend
-    @event = current_user.created_events.find(params[:event_id])
-    user = User.find(params[:user_id])
-    @event.attendees << user
-    if @event.save
-      redirect_to user_events_url, :notice => "Attending Event!"
-    else
-      render "show"
-    end
+    @event = Event.find params[:event_id]
+    @event.attendees << current_user
+    #TODO: Right now can RSVP twice; can be fixed in DB query or here
+    redirect_to @event
   end
 end

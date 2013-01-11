@@ -1,12 +1,29 @@
 <div>
-  <h1><%= @event.name %></h1>
-  <div>
-    <%= @event.street %></br>
-    <%= @event.zip_code %>
-  </div>
+  <h1>
+    <%= @event.name %>
+    <% if @event.attended_by? current_user %>
+      Attending
+    <% else %>
+      <%=link_to 'RSVP', event_attend_path(@event), :method => :post %>
+    <% end %>
+  </h1>
+
   <div>
     <%= @event.occurs_at.try(:strftime, "%B %d, %l:%M %p") %>
   </div>
+
+  <div>
+    <%= @event.location %>
+  </div>
+
+  <div>
+    <%= @event.who %>
+  </div>
+
+  <div>
+    <%= @event.description %>
+  </div>
+
   <% if @event.created_by?(current_user) %>
     <%= link_to 'edit', edit_event_url(@event) %>
   <% else %>
