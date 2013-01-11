@@ -6,7 +6,12 @@ Platz::Application.routes.draw do
 
   resources :sessions
   resources :events do
-    post 'attend'
+    collection do
+      get 'past'
+    end
+    member do
+      post 'attend'
+    end
     resources :users
   end
   resources :users do

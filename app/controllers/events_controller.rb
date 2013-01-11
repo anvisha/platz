@@ -2,8 +2,23 @@ class EventsController < ApplicationController
   before_filter :require_login
 
   def index
-    @events = Event.order('occurs_at ASC')
+    if params.key? :event
+      if params[:event].key? 'end_date(1i)'
+        year = params[:event]['end_date(1i)']
+        month = Integer(params[:event]['end_date(2i)'])
+        time = Time.new(year, month + 1)
+      else
+        time = Time.now.getlocal
+      end
+      wherestring = 'occurs_at < ?'
+    else
+      time = Time.now.getlocal
+      wherestring = 'occurs_at >= ?'
+    end
+    @events = Event.where(wherestring, time).order('occurs_at ASC')
     @by_month = @events.group_by { |event| [ event.occurs_at.year, event.occurs_at.strftime('%B') ] }
+
+
     @created_events = current_user.created_events
   end
 
@@ -35,7 +50,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = current_user.created_events.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def destroy

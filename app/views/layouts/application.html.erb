@@ -16,7 +16,7 @@
         <h1><%= link_to "Events", root_path %></h1>
         <nav>
           <ul>
-            <li><%= link_to "Past Events", events_path %></li>
+            <li><%= link_to "Past Events", events_path(:event => {:search => true}) %></li>
             <li><%= link_to "Create Event", new_user_event_path(current_user) %></li>
             <li>Upload Photos</li>
 

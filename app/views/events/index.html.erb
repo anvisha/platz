@@ -1,45 +1,15 @@
 <div class="upcoming-events">
-  <h1> Upcoming Events </h1>
-  <%= debug @by_month %>
-  <table>
-    <% @by_month.each_key do |yearmonth| %> 
-      <tr>
-        <%= yearmonth%>
-      </tr>
-    <%end%>
-  </table>
+  <h1><%= params.key?(:event) ? "Past Events" : "Upcoming Events" %></h1>
+
+  <% if params[:event] %>
+    <%= form_tag url_for, :method => :get do %>
+      <%= date_select :event, :end_date, :start_year => 2009, :discard_day => true %>
+      <%= hidden_field :event, :search %>
+      <%= submit_tag %>
+    <% end %>       
+  <% end %>
+
 </div>
-<h3>Events I Created</h3>
-<table>
-  <tr>
-    <th>
-      Name
-    </th>
-    <th>
-      Address
-    </th>
-    <th>
-      Date
-    </th>
-  </tr>
-<% @created_events.each do |event| %>
-  <tr>
-    <td>
-      <%= event.name %>
-    </td>
-    <td>
-      <%= event.location %>
-    </td>
-    <td>
-      <%= event.occurs_at.try(:strftime, "%B %d, %l:%M %p") %>
-    </td>
-    <td>
-      <%= link_to 'edit', edit_user_event_url(current_user, :id => event.id) %>
-      <%= link_to "destroy", user_event_url(current_user, :id => event.id), :method => :delete, :confirm => "Are you sure?" %>
-    </td>
-  </tr>
-<% end %>
-</table>
 <h3>Events</h3>
 <table>
   <tr>
