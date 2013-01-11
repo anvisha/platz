@@ -1,23 +1,31 @@
 <div>
   <h1>
     <%= @event.name %>
-
-    <% if @event.attended_by? current_user %>
-      Attending
-    <% else %>
-      <%=link_to 'RSVP', event_attend_path(@event), :method => :post %>
+    <%= form_tag event_attend_path(@event) do |form| %>
+      <% if @event.attended_by? current_user %>
+        <input class="rsvp" type="checkbox" checked="checked"/> Attending
+      <% else %>
+        <input class="rsvp" type="checkbox"/> Attending
+      <% end %>
     <% end %>
+    <script>
+      $(document).on('click', 'input.rsvp', function(event) {
+        var url = $(this).closest('form').attr('action');
+        $.post(url, {attend: $(this).prop('checked')})
+        
+      });
+    </script>
+      
+      <%= link_to 'See Attendees', event_users_path(@event) %>
 
-    <%= link_to 'See RSVP', event_users_path(@event) %>
-
-     <% if @event.created_by?(current_user) %>
-    <%= link_to 'edit', edit_event_url(@event) %>
-  <% else %>
-    <%= link_to 'attend', event_attend_url(@event, :user_id => current_user.id), :method => :post %>
-  <% end %>
-
+       <% if @event.created_by?(current_user) %>
+      <%= link_to 'Edit', edit_event_url(@event) %>
+    <% else %>
+      <%= link_to 'attend', event_attend_url(@event, :user_id => current_user.id), :method => :post %>
+    <% end %>
+    </span>
   </h1>
-
+  
   <div>
     <%= @event.occurs_at.try(:strftime, "%B %d, %l:%M %p") %>
   </div>

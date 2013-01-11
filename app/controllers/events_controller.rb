@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   def update
     @event = current_user.created_events.find(params[:id]) 
     if @event.update_attributes(params[:event])
-      redirect_to user_events_url, :notice => "Event Updated!"
+      redirect_to @event, :notice => "Event Updated!"
     else
       render "edit"
     end
@@ -50,9 +50,15 @@ class EventsController < ApplicationController
   
 
   def attend
-    @event = Event.find params[:event_id]
-    @event.attendees << current_user
-    #TODO: Right now can RSVP twice; can be fixed in DB query or here
+    if params[:attend] == "true"
+      @event = Event.find params[:event_id]
+      @event.attendees << current_user
+      #TODO: Right now can RSVP twice; can be fixed in DB query or here
+    else
+      @event_attendee = EventAttendee.where(:event_id => params[:event_id], :user_id => current_user.id)
+      @event_attendee.delete_all
+
+    end
     redirect_to @event
   end
 end
