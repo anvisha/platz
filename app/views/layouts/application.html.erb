@@ -12,7 +12,7 @@
     <% end %>
     <header>
       <% if current_user %>
-        <h1>Events</h1>
+        <h1><%= link_to "Events", user_events_path(current_user)%></h1>
         <nav>
           <ul>
             <li><%= link_to "Past Events", "#" %></li>
