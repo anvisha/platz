@@ -12,4 +12,9 @@ class UsersController < ApplicationController
       render "new"
     end
   end
+
+  def index
+    @event = Event.find params[:event_id]
+    @attendees = @event.attendees
+  end
 end

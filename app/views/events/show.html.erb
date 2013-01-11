@@ -1,11 +1,21 @@
 <div>
   <h1>
     <%= @event.name %>
+
     <% if @event.attended_by? current_user %>
       Attending
     <% else %>
       <%=link_to 'RSVP', event_attend_path(@event), :method => :post %>
     <% end %>
+
+    <%= link_to 'See RSVP', event_users_path(@event) %>
+
+     <% if @event.created_by?(current_user) %>
+    <%= link_to 'edit', edit_event_url(@event) %>
+  <% else %>
+    <%= link_to 'attend', event_attend_url(@event, :user_id => current_user.id), :method => :post %>
+  <% end %>
+
   </h1>
 
   <div>
@@ -23,10 +33,4 @@
   <div>
     <%= @event.description %>
   </div>
-
-  <% if @event.created_by?(current_user) %>
-    <%= link_to 'edit', edit_event_url(@event) %>
-  <% else %>
-    <%= link_to 'attend', event_attend_url(@event, :user_id => current_user.id), :method => :post %>
-  <% end %>
 </div>
