@@ -1,4 +1,5 @@
-<h2>Attendees</h2>
+<h2>Attendees <%= link_to 'Download', :format => 'csv' %></h2>
+
 <ul>
 <% @attendees.each do |user| %>
   <li><%= user.email %></li>
