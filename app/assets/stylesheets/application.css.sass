@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6
   font-weight: 300
 
 a
-  color: black
+  color: hsl(200, 20%, 50%)
   text-decoration: none
   &:hover
     color: grey
@@ -39,10 +39,20 @@ form
       color: black
 
 header
+
+  border-bottom: solid 1px black
+  h1
+    background: url("/assets/logo.png") no-repeat
+    padding-left: 40px
+    a
+      color: grey
   h1, nav
     display: inline-block
     margin-top: 0
   nav
+    font-size: 20px
+    ul
+      padding-left: 10px
     li
       display: inline
       margin: 0 10px
