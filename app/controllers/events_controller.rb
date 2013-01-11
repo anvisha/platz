@@ -2,7 +2,8 @@ class EventsController < ApplicationController
   before_filter :require_login
 
   def index
-    @events = Event.all
+    @events = Event.order('occurs_at ASC')
+    @by_month = @events.group_by { |event| [ event.occurs_at.year, event.occurs_at.strftime('%B') ] }
     @created_events = current_user.created_events
   end
 
