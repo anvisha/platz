@@ -16,5 +16,10 @@ class UsersController < ApplicationController
   def index
     @event = Event.find params[:event_id]
     @attendees = @event.attendees
+    #TODO: right now to notify, gives csv of emails.  Think of smarter way
+    respond_with @attendees do |format|
+      format.html
+      format.csv { render :text => @attendees.map {|a| a.email }.join(',') }
+    end
   end
 end
