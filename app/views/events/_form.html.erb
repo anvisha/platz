@@ -4,9 +4,14 @@
     <%= form.text_field :name %>
   </div>
   <div>
-    <%= form.label :occurs_at, "Date" %>
+    <%= form.label :occurs_at, "Start Time" %>
     <%= form.datetime_select :occurs_at, :start_year => Time.now.year, :ampm => true,
         :order => [:month, :day, :year, :hour, :minute], :minute_step => 15  %>
+  </div>
+  <div>
+    <%= form.label :occurs_at, "End Time" %>
+    <%= form.datetime_select :ends_at, :start_year => Time.now.year, :ampm => true,
+    :order => [:month, :day, :year, :hour, :minute], :minute_step => 15  %>
   </div>
   <div>
     <%= form.label :"who", "Open To" %>
