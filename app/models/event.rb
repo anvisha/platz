@@ -6,4 +6,8 @@ class Event < ActiveRecord::Base
   def created_by?(user)
     creator == user
   end
+
+  def attended_by?(user)
+    event_attendees.where(:user_id => user.id).exists?
+  end
 end
