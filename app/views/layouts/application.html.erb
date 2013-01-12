@@ -8,9 +8,6 @@
 </head>
 <body class="<%= params[:controller] %>">
   <div id="container">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
     <header>
       <% if current_user %>
         <h1><%= link_to "Events", root_path %></h1>
