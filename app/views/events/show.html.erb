@@ -17,6 +17,9 @@
       <% end %>
     </span>
   </h2>
+
+<img class="map" src="http://maps.googleapis.com/maps/api/staticmap?center=<%= @event.location %>&zoom=15&size=400x200&sensor=false&markers=size:small|<%= @event.location %>"/>
+
   
   <section>
     <%= @event.occurs_at.try(:strftime, "%B %d, %l:%M %p") %>
@@ -38,6 +41,7 @@
     <%= @event.description %>
   </section>
 </div>
+
 
 <script>
   $(document).on('click', 'input.rsvp', function(event) {
