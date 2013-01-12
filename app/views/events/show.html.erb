@@ -17,10 +17,9 @@
       <% end %>
     </span>
   </h2>
-
-<img class="map" src="http://maps.googleapis.com/maps/api/staticmap?center=<%= @event.location %>&zoom=15&size=400x200&sensor=false&markers=size:small|<%= @event.location %>"/>
-
-  
+  <% if @event.address.present? %>
+    <img class="map" src="http://maps.googleapis.com/maps/api/staticmap?center=<%= @event.address %>&zoom=15&size=400x200&sensor=false&markers=size:small|<%= @event.address %>"/>
+  <% end %>  
   <section>
     <%= @event.occurs_at.try(:strftime, "%B %d, %l:%M %p") %>
     &ndash;
@@ -29,7 +28,8 @@
 
   <section>
     <label>Location: </label>
-    <%= @event.location %>
+    <%= @event.location %><br/>
+    <%= @event.address %>
   </section>
 
   <section>

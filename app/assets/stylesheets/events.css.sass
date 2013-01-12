@@ -11,6 +11,7 @@ table.upcoming
 
 
 .event
+  overflow: hidden
   h2
     margin-bottom: 2em
     .rsvp-info
@@ -23,11 +24,13 @@ table.upcoming
   section
     margin: 1em 0
 
-form.new_event
+form.new_event, form.edit_event
   width: 60%
   .create-new-button
     text-align: right
     margin-right: 42px
+form.edit_event
+  width: 100%
 
 img.map
   float: right

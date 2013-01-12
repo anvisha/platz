@@ -66,11 +66,11 @@ class EventsController < ApplicationController
 
   def attend
     if params[:attend] == "true"
-      @event = Event.find params[:event_id]
+      @event = Event.find params[:id]
       @event.attendees << current_user
       #TODO: Right now can RSVP twice; can be fixed in DB query or here
     else
-      @event_attendee = EventAttendee.where(:event_id => params[:event_id], :user_id => current_user.id)
+      @event_attendee = EventAttendee.where(:event_id => params[:id], :user_id => current_user.id)
       @event_attendee.delete_all
 
     end
