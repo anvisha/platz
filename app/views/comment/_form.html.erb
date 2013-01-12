@@ -1,0 +1,9 @@
+<%= form_for([@event, comment]) do |form| %>
+  <div>
+    <%= form.label :body %>
+    <%= form.text_field :body %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

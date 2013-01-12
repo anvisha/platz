@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
   has_many :event_attendees
   has_many :attendees, :through => :event_attendees, :source => :user
 
+  has_many :comments
+
   def created_by?(user)
     creator == user
   end
@@ -10,4 +12,5 @@ class Event < ActiveRecord::Base
   def attended_by?(user)
     event_attendees.where(:user_id => user.id).exists?
   end
+
 end

@@ -39,6 +39,16 @@
   </section>
 </div>
 
+<div>
+  <h3> Comments </h3>
+  <% @event.comments.each do |comment| %>
+    <%= comment.body %> <br />
+    <%= comment.creator.email %> wrote at <%= comment.created_at %> <br />
+  <% end %>
+  <%= render :partial => 'comment/form', :locals => {
+    :comment => Comment.new
+  } %>
+</div>
 <script>
   $(document).on('click', 'input.rsvp', function(event) {
     var url = $(this).closest('form').attr('action');
