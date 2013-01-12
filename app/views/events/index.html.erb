@@ -3,9 +3,10 @@
 
   <% if params[:event] %>
     <%= form_tag url_for, :method => :get do %>
+      <label> Show events before: </label>
       <%= date_select :event, :end_date, :start_year => 2009, :discard_day => true %>
       <%= hidden_field :event, :search %>
-      <%= submit_tag %>
+      <%= submit_tag("Filter") %>
     <% end %>       
   <% end %>
 
