@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111214650) do
+ActiveRecord::Schema.define(:version => 20130111235350) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "event_id"
+    t.text     "body"
+    t.integer  "creator_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "event_attendees", :force => true do |t|
     t.integer  "user_id"
@@ -24,12 +32,16 @@ ActiveRecord::Schema.define(:version => 20130111214650) do
     t.integer  "creator_id"
     t.string   "name"
     t.datetime "occurs_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "description"
     t.string   "who"
     t.string   "location"
     t.datetime "ends_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", :force => true do |t|
